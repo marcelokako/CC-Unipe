@@ -15,14 +15,14 @@
 
 int main(){
 	
-	float C, F;
+	float tempC, tempF;
 	
 	printf("Digite a temperatura em C: ");
-	scanf("%f", &C);
+	scanf("%f", &tempC);
 	
-	F = 1.8 * C + 32;
+	tempF = 1.8 * tempC + 32;
 	
-	printf("Esta temperatura em F e: %f", F);
+	printf("Esta temperatura em F e: %f", tempF);
 	
 return 0;
 }
