@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salário</title>
+</head>
+<!--
+Crie um Script na linguagem PHP que receba o nome e salário de um funcionário 
+a partir de um formulário HTML. Depois, calcule o novo salário do funcionário, 
+sabendo-se que este sofreu um aumento de 25%, por fim, com o comando “echo” 
+exiba a seguinte frase: “Olá nome_da_pessoao seu novo salário é novo_salario”.    
+--> 
+<body>
+    <form action = "exercicio-php-salario.php" method="post">
+
+        <label for = "nome">Nome: </label>
+        <input name="nome" type="text" id="nome">
+        <br>
+        <label for = "salario">Salário: </label>
+        <input name="salario" type="number" id="salario">
+        <br>
+        <button>Enviar</button>
+    </form>
+</body>
+</html>
