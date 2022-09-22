@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira Questão</title>
+</head>
+<body>
+
+    <h1>Primeira Questão</h1>
+
+    <form action="primeira-questao.php" method="post">
+        <fieldset>
+            <legend>Digite o seu salário e seleciona uma opção</legend>
+            
+            <br>
+            <label for="salario">Salário: </label>
+            <input type="text" name="salario" id="salario"><br><br>
+
+            <!-- Coloco o atributo checked para impossibilitar o usuario de enviar sem ter nada selecionado-->
+            <input type="radio" name="opcao" value="op1" id="imposto" checked>
+            <label for="imposto">Imposto</label><br>
+
+            <input type="radio" name="opcao" value="op2" id="novo-salario">
+            <label for="novo-salario">Novo salário</label><br>
+
+            <input type="radio" name="opcao" value="op3" id="classificacao">
+            <label for="classificacao">Classificação</label><br>
+            
+            <br><br>
+            <button>Enviar</button>
+        </fieldset>
+    </form>
+
+    <br><br><a href="pagina-principal.html">Voltar para página principal</a>
+</body>
+</html>
