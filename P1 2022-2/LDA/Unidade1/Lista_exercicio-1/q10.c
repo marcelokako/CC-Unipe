@@ -1,4 +1,4 @@
-// Questao 9
+// Questao 10
 #include <stdio.h>
 
 int main(){
