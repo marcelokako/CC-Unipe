@@ -3,7 +3,7 @@
     $codigo = (float) $_POST["codigo"];
     $qtde = (float) $_POST["qtde"];
 
-    if ($codigo > 1 && $codigo <= 10){
+    if ($codigo >= 1 && $codigo <= 10){
         $preco = 10;
     } elseif ($codigo <= 20){
         $preco = 15;
