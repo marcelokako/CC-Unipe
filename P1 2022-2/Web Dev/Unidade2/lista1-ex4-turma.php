@@ -13,21 +13,30 @@ A partir do array declarado, implemente os seguintes algoritmos
                 "D" => [8,6,3],
                 "E" => [9,9,9],
                 "F" => [2,3,5]];
+   
     $acumuladorTurma = 0;
     $melhorNota = 0;
+    $contadorAprovados = 0;
 
-    foreach($turma as $aluno => $valor){
-        for($i = 0; $i < count($valor); $i++){
+    foreach($turma as $aluno => $nota){
+        $acumuladorAluno = 0;  
+        for($i = 0; $i < count($nota); $i++){
 
-            $acumuladorTurma += $valor[$i];
-            $acumuladorAluno += $valor[$i];
-            if ($preco > $precoMaisCaro){
-                $livroMaisCaro = $titulo; 
-                $precoMaisCaro = $preco;
+            $acumuladorAluno += $nota[$i];
+         
+            if ($nota[$i] > $melhorNota){
+                $alunoMelhorNota = $aluno; 
+                $melhorNota = $nota[$i];
             }
-        
+            
+        }
+        echo "Aluno: $aluno | Média: " . $acumuladorAluno/count($nota) . "<br>";
+        $acumuladorTurma += $acumuladorAluno;
+        if ($acumuladorAluno/count($nota) >= 7){
+            $contadorAprovados++;
         }
     }
 
-    echo "<br>Soma: $acumulador<br>Livro mais caro: $livroMaisCaro R$$precoMaisCaro";
-?>
+    echo "<br>Média da turma: " . $acumuladorTurma/(count($turma)*count($nota));
+    echo "<br>Qtde de alunos aprovados: $contadorAprovados";
+    echo "<br>Aluno com a melhor nota: $alunoMelhorNota ($melhorNota)";
