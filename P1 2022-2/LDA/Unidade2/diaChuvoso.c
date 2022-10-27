@@ -8,11 +8,8 @@ int main(){
 	
 	int semanaChuva[7]; // em mm
 	char SEMANA[7][10] = {"Domingo", "Segunda", "Terca", "Quarta", "Quinta", "Sexta", "Sabado"};
-	int maisChuva, menosChuva;
-	int maisChuvaMM = 0;
-	int menosChuvaMM = 12;
-	int maisChuvaDia;
-	int menosChuvaDia;
+	int maisChuvaMM = 0, menosChuvaMM = 12;
+	int maisChuvaDia, menosChuvaDia;
 	float acumulador = 0;
 	int i;
 	srand(time(0));
