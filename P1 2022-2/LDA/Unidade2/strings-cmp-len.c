@@ -13,7 +13,7 @@ int main(){
 	printf("%s\n", nome);
 	
 	if (nome[0] != 'A' && nome[0] != 'a'){
-		printf("Errado! Voce iniciou com a letra 'A'\n");
+		printf("Errado! Voce nao iniciou com a letra 'A'\n");
 		erro++;
 	}
 	if (strlen(nome)-1 > 5 ){
