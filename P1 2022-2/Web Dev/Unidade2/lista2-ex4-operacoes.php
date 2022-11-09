@@ -23,6 +23,7 @@ switch ($_POST["calculo"]){
         $resultado = "ERRO";
 }
 
-echo "Operação: " . $_POST["calculo"] . "<br>Resultado: $resultado";
-
+if (resultado){
+    echo "Operação: " . $_POST["calculo"] . "<br>Resultado: $resultado";
+}
 ?>
