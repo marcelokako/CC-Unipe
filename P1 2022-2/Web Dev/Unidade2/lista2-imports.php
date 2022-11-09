@@ -31,4 +31,24 @@ function imc($peso, $altura){
     return $imc;
 }
 
+function subtracao($array){
+    $acumulador = $array[0];
+    for ($i = 0; $i < count($array); $i++){
+        $acumulador -= $array[$i];
+    }
+    return $acumulador;
+}
+
+function multiplicacao($array){
+    $acumulador = 1;
+    for ($i = 0; $i < count($array); $i++){
+        $acumulador *= $array[$i];
+    }
+    return $acumulador;
+}
+
+function divisao($n1, $n2){
+    return $n1/$n2;
+}
+
 ?>
