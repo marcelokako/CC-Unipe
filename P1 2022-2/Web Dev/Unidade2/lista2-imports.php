@@ -26,7 +26,7 @@ function maior($array){
     return $maior;
 }
 
-function imc($peso, $altura){
+function imc(float $peso, float $altura){
     $imc = $peso/($altura*$altura);
     return $imc;
 }
@@ -47,8 +47,12 @@ function multiplicacao($array){
     return $acumulador;
 }
 
-function divisao($n1, $n2){
-    return $n1/$n2;
+function divisao(float $n1, float $n2){
+    if ($n2 == 0){
+        return false;
+    }else{
+        return $n1/$n2;
+    }
 }
 
 ?>
