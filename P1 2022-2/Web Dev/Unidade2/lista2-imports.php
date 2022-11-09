@@ -33,7 +33,7 @@ function imc(float $peso, float $altura){
 
 function subtracao($array){
     $acumulador = $array[0];
-    for ($i = 0; $i < count($array); $i++){
+    for ($i = 1; $i < count($array); $i++){
         $acumulador -= $array[$i];
     }
     return $acumulador;
