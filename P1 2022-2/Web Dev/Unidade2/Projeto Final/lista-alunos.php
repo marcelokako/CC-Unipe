@@ -1,3 +1,13 @@
+<?php
+function cadastrar($nome, $matricula, float $nota1, float $nota2)
+    $media = ($nota1 + $nota2) / 2;
+    fopen("alunos.txt", a);
+    $texto = [$nome, $matricula, $nota1, $nota2, $media];
+    foreach ($texto as $coluna){
+       // fwrite($)             TAVA AQUI
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,16 +18,12 @@
 </head>
 <body>
     <fieldset>
-        <legend>Lista de Aluno</legend>
-            <br>
-            Nome do aluno: <input type="text" name="nome"><br><br>
-            Matrícula: <input type="text" name="matricula"><br><br>
-            Nota 1: <input type="text" name="nota1"><br><br>
-            Nota 2: <input type="text" name="nota2"><br><br>
-            
-            <br>
-            <br>
-            <button>Cadastrar</button>
+        <?php
+        $nome = $_POST["nome"];
+        $matricula = $_POST["matricula"];
+        $nota1 = $_POST["nota1"];
+        $nota2 = $_POST["nota2"];
+        ?>
     </fieldset>
 
 </body>
