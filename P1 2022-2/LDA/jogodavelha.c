@@ -90,7 +90,7 @@ int main() {
 		for (j = 0; j < 3; j++) {
 			printf(" %c ", tabuleiroSim[i][j]);
 		}
-		printf("\n");
+		printf("|\n");
 	}
 	printf("PERDEDOR: JOGADOR %c", jogador);
 	return 0;
