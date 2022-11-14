@@ -4,7 +4,6 @@
 int main() {
 
 	int tabuleiroNum[3][3] = {{0, 0, 0},{0, 0, 0},{0, 0, 0}};
-	int tabuleiroJogadas[3][3] = {{0, 0, 0},{0, 0, 0},{0, 0, 0}};
 
 	char tabuleiroSim[3][3] = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
 
@@ -27,8 +26,7 @@ int main() {
 		do {
 			printf("\nJogador %c, digite a posicao: ", jogador);
 			scanf("%d %d", &x, &y);
-		} while (tabuleiroJogadas[x-1][y-1] != 0 || ((x > 3 || x < 0) || (y > 4 || y < 0)) );
-		tabuleiroJogadas[x-1][y-1] = 9;
+		} while (abs(tabuleiroNum[x-1][y-1]) == 1 || ((x > 3 || x < 0) || (y > 4 || y < 0)) );
 
 		if (jogador == 'X') {
 			tabuleiroNum[x-1][y-1] = 1;
