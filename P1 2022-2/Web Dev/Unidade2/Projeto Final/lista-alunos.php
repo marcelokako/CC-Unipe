@@ -1,16 +1,17 @@
 <?php
-function cadastrar($nome, $matricula, float $nota1, float $nota2){
+function cadastrar($nome, $matricula, float $nota1, float $nota2)
+{
 
     $media = ($nota1 + $nota2) / 2;
     $arquivo = fopen("alunos.txt", 'a');
-    $texto = [$nome, $matricula, $nota1, $nota2, $media];
-    foreach ($texto as $item){
+    $texto = ["nome" => $nome, "matricula" => $matricula, "nota1" => $nota1, "nota2" => $nota2, "media" => $media];
+    foreach ($texto as $item) {
         fwrite($arquivo, $item);
         fwrite($arquivo, '|');
     }
     fwrite($arquivo, "\n");
     fclose($arquivo);
-    
+
     return 0;
 }
 ?>
@@ -31,10 +32,9 @@ function cadastrar($nome, $matricula, float $nota1, float $nota2){
         $matricula = $_POST["matricula"];
         $nota1 = $_POST["nota1"];
         $nota2 = $_POST["nota2"];
-        
-        echo "hello world1";
 
-        cadastrar($nome,$matricula,$nota1,$nota2);
+        cadastrar($nome, $matricula, $nota1, $nota2);
+
         ?>
     </fieldset>
 
