@@ -34,7 +34,7 @@ int main() {
 		printf("Digite os dois numeros: ");
 		scanf("%f %f", &numero1, &numero2);	
 		
-		printf("Escolha qual operacao deseja executar\n[1]Adicao [2]Subtracao [3]Multiplicacao [4]Divisao [5]Sair da calculadora\n");
+		printf("\nEscolha qual operacao deseja executar\n[1]Adicao \n[2]Subtracao \n[3]Multiplicacao \n[4]Divisao \n[5]Sair da calculadora\n");
 		scanf("%d", &escolha);
 		
 		
