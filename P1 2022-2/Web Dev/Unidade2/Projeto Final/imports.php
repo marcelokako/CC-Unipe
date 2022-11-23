@@ -11,17 +11,20 @@ function cadastrar($nome, $matricula, float $nota1, float $nota2)
     fwrite($arquivo, "\n");
     fclose($arquivo);
 
-    return 0;
 }
+function criar_tabela()
+{
+    $arquivo = file("alunos.txt");
+    
+    $dadosAluno =  ["nome" => "", "matricula" => "", "nota1" => "", "nota2" => "", "media" => ""];
+        foreach ($arquivo as $linha_num => $conteudo) {
+            
+            foreach($dadosAluno as $coluna => $valor){
 
-function criar_tabela(){
-    $arquivo = fopen("alunos.txt",'r');
-    $linha =  ["nome" => "", "matricula" => "", "nota1" => "", "nota2" => "", "media" => ""];
-    while(feof("alunos.txt")){
-        foreach ($linha as $coluna){
+              }
 
-        }
-    }
+            }
+    
 
 }
 ?>
