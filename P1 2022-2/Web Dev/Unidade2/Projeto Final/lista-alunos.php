@@ -9,20 +9,20 @@
 </head>
 <body>
     <fieldset>
+-->
         <?php
-        include "imports.php";
 
+        include "imports.php";
         $nome = $_POST["nome"];
         $matricula = $_POST["matricula"];
         $nota1 = $_POST["nota1"];
         $nota2 = $_POST["nota2"];
-
         cadastrar($nome, $matricula, $nota1, $nota2);
+        criar_tabela();
 
-        
         ?>
+<!--
     </fieldset>
-
 </body>
 </html>
 -->
