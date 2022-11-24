@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,8 +7,7 @@
     <title>Lista de Alunos</title>
 </head>
 <body>
-    <fieldset>
--->
+
         <?php
 
         include "imports.php";
@@ -21,8 +19,6 @@
         criar_tabela();
 
         ?>
-<!--
-    </fieldset>
+
 </body>
 </html>
--->
