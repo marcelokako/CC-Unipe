@@ -11,11 +11,15 @@
         <?php
 
         include "imports.php";
-        $nome = $_POST["nome"];
-        $matricula = $_POST["matricula"];
-        $nota1 = $_POST["nota1"];
-        $nota2 = $_POST["nota2"];
-        cadastrar($nome, $matricula, $nota1, $nota2);
+
+        if (isset($_POST["nome"]) && isset($_POST["matricula"]) && isset($_POST["nota1"]) && isset($_POST["nota2"])){
+            $nome = $_POST["nome"];
+            $matricula = $_POST["matricula"];
+            $nota1 = $_POST["nota1"];
+            $nota2 = $_POST["nota2"];
+            cadastrar($nome, $matricula, $nota1, $nota2);
+        }
+        
         criar_tabela();
 
         ?>
