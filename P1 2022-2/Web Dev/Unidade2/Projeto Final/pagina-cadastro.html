@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- 
+TODO LIST
+2- Pesquisar como fazer botão interativo
+-->
+
+    <div style="text-align: center;">
+        <!-- Cabeçalho -->
+        <h1>Escola Bílingue Papa Lorem Ipsum III <br></h1>
+        <h4>Português e Latim</h2>
+            <br>
+            <br>
+
+            <!-- Botão para trocar de página -->
+            <form action="pagina-listar.php">
+                <button type="button" disabled>Cadastrar Aluno</button> | <button>Listar Alunos</button>
+            </form>
+            <br>
+            <br>
+
+            <!-- Funcionalidade de Cadastrar Aluno -->
+
+            <h2>Cadastrar Aluno</h2>
+
+            <form action="pagina-listar.php" method="post">
+                <br>
+
+                <table align="center" border=1px>
+                    <tr>
+                        <td>Nome: </td>
+                        <td><input type="text" name="nome" required placeholder="Digite o nome do aluno"></td>
+                    </tr>
+                    <tr>
+                        <td>Matrícula: </td>
+                        <td><input type="text" name="matricula" required placeholder="Digite a matrícula"></td>
+                    </tr>
+                    <tr>
+                        <td>Nota 1: </td>
+                        <td><input type="number" step=0.05 name="nota1" required placeholder="Digite a primeira nota"></td>
+                    </tr>
+                    <tr>
+                        <td>Nota 2: </td>
+                        <td><input type="number" step=0.05 name="nota2" required placeholder="Digite a segunda nota"></td>
+                    </tr>
+                </table>
+
+                <br>
+                <br>
+                <button>Cadastrar</button>
+            </form>
+
+            <br>
+            <hr>
+            <p>Direitos Reservados: Marcelo Camilo Gomes, Marco Túlio S.M Duarte</p>
+    </div>
+
+</body>
+
+</html>
