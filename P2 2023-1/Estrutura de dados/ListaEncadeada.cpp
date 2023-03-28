@@ -3,17 +3,21 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct No {
+typedef struct Dados {
 	char nome[20];
-	No *prox;
 } Aluno;
 
-typedef struct listaEncadeada {
-	Aluno *cabeca;
+typedef struct No {
+	Aluno Elemento;
+	struct No * prox;
 } ListaE;
 
-ListaE criarEncadeada(){
-	return ListaE;
+ListaE * criarEncadeada(){
+	ListaE * no = (ListaE*) malloc(sizeof(ListaE));
+	
+	if (no)
+		no->prox=NULL
+	return no;
 }
 
 int getTamanho (Aluno *aluno){
