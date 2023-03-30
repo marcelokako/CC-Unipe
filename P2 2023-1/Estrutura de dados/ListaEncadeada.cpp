@@ -12,7 +12,7 @@ typedef struct No {
 	struct No * prox;
 } ListaE;
 
-ListaE * criarEncadeada(){
+ListaE * criarNo(){
 	ListaE * no = (ListaE*) malloc(sizeof(ListaE));
 	
 	if (no)
@@ -23,7 +23,7 @@ ListaE * criarEncadeada(){
 int getTamanho (Aluno *aluno){
 	int tamanho = 0;
 	temp = &aluno;
-	while (temp->prox != null){
+	while (temp->prox != NULL){
 		temp = temp->prox;
 		tamanho++;
 	}
@@ -38,11 +38,33 @@ bool estaVazia(Aluno *aluno){
 	return false;
 }
 
-void adicionar(Aluno *aluno, No no){
-	if ( estaVazia(&aluno) ){
-		aluno->prox = &no;
-		strcpy(aluno->nome ,no.nome)
+No getNo(ListaE lista, int pos){
+	int n = 0;
+	
+	if (pos<0) 
+		return 0;
+		
+	while (lista != NULL){
+		if (n==pos)
+			return lista;
+		lista = lista->prox;
+		n++
 	}
+	
+	return 0; // só para aqui se nao encontrar nada na posicao dada
+	
+}
+
+void adicionar(ListaE *lista, Aluno aluno){
+	if ( estaVazia(&aluno) ){
+		aluno->prox = NULL;
+		strcpy(aluno->nome ,no.nome)
+	} 
+	while (aluno->prox != null){
+		aluno = aluno->prox;
+	}
+	criarNo();
+	
 }
 
 void exibirLista (ListaE *lista){
@@ -56,7 +78,7 @@ void exibirLista (ListaE *lista){
 }
 
 int main (){
-	minhaLista = criarEncadeada();
+	minhaLista = criarNo();
 	
 	
 	return 0;
