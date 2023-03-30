@@ -7,48 +7,74 @@ typedef struct Dados {
 	char nome[20];
 } Aluno;
 
-typedef struct No {
+typedef struct t_no {
 	Aluno Elemento;
-	struct No * prox;
-} ListaE;
+	struct t_no * prox;
+} No;
 
-ListaE * criarEncadeada(){
-	ListaE * no = (ListaE*) malloc(sizeof(ListaE));
+typedef No* ListaE;
+
+No * criarNo(){
+	No * no = (No*) malloc(sizeof(No));
 	
 	if (no)
-		no->prox=NULL
+		no->prox = NULL;
+	
 	return no;
 }
 
-int getTamanho (Aluno *aluno){
+int getTamanho (ListaE lista){
 	int tamanho = 0;
-	temp = &aluno;
-	while (temp->prox != null){
-		temp = temp->prox;
+	
+	while (lista->prox != NULL){
+		lista = lista->prox;
 		tamanho++;
 	}
 	return tamanho;
 }
 
 
-bool estaVazia(Aluno *aluno){
-	if (aluno->prox == null){
+bool estaVazia(ListaE lista){
+	if (lista->prox == NULL){
 		return true;
 	}
 	return false;
 }
 
-void adicionar(Aluno *aluno, No no){
-	if ( estaVazia(&aluno) ){
-		aluno->prox = &no;
-		strcpy(aluno->nome ,no.nome)
+No * getNo(ListaE  lista, int pos){
+	int n=0;
+	
+	if (pos<0)
+		return 0; // posição inválida
+	
+	while (lista != NULL) {
+		if (n == pos){
+			return lista;
+		}
+		lista = lista -> prox;
+		n++;
 	}
+	
+	return 0; // chega aqui se posição for maior que o tamanho da lista
+}
+
+
+
+int primeiroTermo(ListaE *lista, Aluno aluno){
+	No * novo;
+	novo = criarNo();
+	
+	novo->elemento = aluno;
+	novo->prox = *lista;
+	*lista = novo;
+	return 1;
+		
 }
 
 void exibirLista (ListaE *lista){
 	int i = 0;
 	Aluno *temp = lista;
-	while (temp->prox != null){
+	while (temp->prox != NULL){
 		printf("Aluno %d: %s\n", i, aluno->nome);
 		temp = temp->prox;
 		i++;
@@ -56,7 +82,14 @@ void exibirLista (ListaE *lista){
 }
 
 int main (){
-	minhaLista = criarEncadeada();
+	
+	minhaLista = criarNo();
+	Aluno struct Marcelo {
+		char nome[20] = "Marcelo";
+	}
+	primeiroTermo(minhaLista, Marcelo);
+	
+	exibirLista();
 	
 	
 	return 0;
