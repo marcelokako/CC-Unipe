@@ -15,21 +15,34 @@ public class Secundaria {
 		return resp;
 	}//------------------------------------------------------------------gerador
 
-	public static String separador(String lista) {
-		String resp = "oi";
+	public static int separador(String lista) {
 		int tamanho = (lista.length()/3); // cada numero adicionado na lista possui 3 char
-		int linhas = 0;
+		String[] array = lista.split(" ");
+		int linhas = 1;
 		int sequencia = 1;
 		int incremento = 1;
-		while (tamanho>=sequencia) {
+		int contador = 0;
+		while (tamanho>sequencia) {
+			//System.out.println("\n contador: "+contador+"\n tamanho: "+ tamanho);
+			//System.out.println("\n sequencia: "+sequencia+"\n incremento: "+ incremento);
+
+			for (int i = 0; i<incremento; i++) {
+				System.out.printf(array[contador] + " ");
+				contador++;
+			}
+			System.out.println();
 			
 			sequencia = sequencia + ++incremento;
-			//System.out.println(sequencia);
 
 			linhas++;
 		}
-		System.out.println(linhas);
-		return resp;
+		
+		while (contador<=tamanho) {
+			System.out.printf(array[contador-1] + " ");
+			contador++;
+		}
+		
+		return linhas;
 	}//------------------------------------------------------------------separador
 
 	
