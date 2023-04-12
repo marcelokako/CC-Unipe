@@ -18,17 +18,24 @@ public class Secundaria {
 	public static int separador(String lista) {
 		int tamanho = (lista.length()/3); // cada numero adicionado na lista possui 3 char
 		String[] array = lista.split(" ");
+		int soma = 0;
+		int menor = 0;
 		int linhas = 1;
 		int sequencia = 1;
 		int incremento = 1;
 		int contador = 0;
+		
 		while (tamanho>sequencia) {
-			//System.out.println("\n contador: "+contador+"\n tamanho: "+ tamanho);
-			//System.out.println("\n sequencia: "+sequencia+"\n incremento: "+ incremento);
-
+			menor = Integer.parseInt(array[contador]);
 			for (int i = 0; i<incremento; i++) {
-				System.out.printf(array[contador++] + " ");
+				System.out.printf(array[contador] + " ");
+				if (Integer.valueOf(array[contador]) < menor) {
+					menor = Integer.valueOf(array[contador]);
+				}
+				contador++;
 			}
+			soma += menor;
+			System.out.println("\nMenor: " + menor + "\nSoma ate o momento: " + soma);
 			System.out.println();
 			
 			sequencia = sequencia + ++incremento;
@@ -37,10 +44,15 @@ public class Secundaria {
 		}
 		
 		while (contador<tamanho) {
-			System.out.printf(array[contador++] + " ");
+			System.out.printf(array[contador] + " ");
+			if (Integer.valueOf(array[contador]) < menor) {
+				menor = Integer.valueOf(array[contador]);
+			}
+			contador++;
 		}
-		
-		return linhas;
+		soma += menor;
+		System.out.println("\nMenor: " + menor + "\nSoma ate o momento: " + soma);
+		return soma;
 	}//------------------------------------------------------------------separador
 
 	
