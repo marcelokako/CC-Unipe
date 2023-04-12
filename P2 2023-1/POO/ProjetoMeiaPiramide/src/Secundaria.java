@@ -27,8 +27,7 @@ public class Secundaria {
 			//System.out.println("\n sequencia: "+sequencia+"\n incremento: "+ incremento);
 
 			for (int i = 0; i<incremento; i++) {
-				System.out.printf(array[contador] + " ");
-				contador++;
+				System.out.printf(array[contador++] + " ");
 			}
 			System.out.println();
 			
@@ -37,9 +36,8 @@ public class Secundaria {
 			linhas++;
 		}
 		
-		while (contador<=tamanho) {
-			System.out.printf(array[contador-1] + " ");
-			contador++;
+		while (contador<tamanho) {
+			System.out.printf(array[contador++] + " ");
 		}
 		
 		return linhas;
