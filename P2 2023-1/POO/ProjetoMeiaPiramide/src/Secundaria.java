@@ -15,9 +15,10 @@ public class Secundaria {
 		return resp;
 	}//------------------------------------------------------------------gerador
 
-	public static int separador(String lista) {
+	public static void separador(String lista) {
 		int tamanho = (lista.length()/3); // cada numero adicionado na lista possui 3 char
 		String[] array = lista.split(" ");
+		String menores = "";
 		int soma = 0;
 		int menor = 0;
 		int linhas = 1;
@@ -34,8 +35,8 @@ public class Secundaria {
 				}
 				contador++;
 			}
+			menores = menores.concat(Integer.toString(menor) + " "); // adiciona numero à string e um espaço
 			soma += menor;
-			System.out.println("\nMenor: " + menor + "\nSoma ate o momento: " + soma);
 			System.out.println();
 			
 			sequencia = sequencia + ++incremento;
@@ -43,6 +44,7 @@ public class Secundaria {
 			linhas++;
 		}
 		
+		menor = Integer.parseInt(array[contador]);
 		while (contador<tamanho) {
 			System.out.printf(array[contador] + " ");
 			if (Integer.valueOf(array[contador]) < menor) {
@@ -50,9 +52,11 @@ public class Secundaria {
 			}
 			contador++;
 		}
+		menores = menores.concat(Integer.toString(menor) + " "); // adiciona numero à string e um espaço
+		
 		soma += menor;
-		System.out.println("\nMenor: " + menor + "\nSoma ate o momento: " + soma);
-		return soma;
+		
+		System.out.println("\n\nMenores: " + menores + "\nSoma: " + soma);
 	}//------------------------------------------------------------------separador
 
 	
