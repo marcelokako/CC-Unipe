@@ -70,10 +70,13 @@ int main() {
 	// B) mostrar placa do quinto carro
 	printf("\n LetraB: Placa do carro 5: %s\n", minhaPilha.elemento[4].placa);	
 	// C) 3 carros saem do beco e mostra a sua placa
+	printf("\n LetraC: Placa do carro que saiu: %s\n", pop(&minhaPilha));
 	printf("\n LetraC: Placa do carro que saiu: %s\n", pop(&minhaPilha));   
+	printf("\n LetraC: Placa do carro que saiu: %s\n", pop(&minhaPilha));   
+
 	mostrar(&minhaPilha);	
 	// D) após A e C, mostrar quantos carros ainda tem
-	printf("\n LetraD: No beco, ainda existem %d carros", minhaPilha.topo);
+	printf("\n LetraD: No beco, ainda existem %d carros", minhaPilha.topo + 1);
     return 0;
 }
 
