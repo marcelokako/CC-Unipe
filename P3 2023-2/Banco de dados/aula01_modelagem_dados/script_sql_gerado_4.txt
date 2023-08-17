@@ -1,0 +1,44 @@
+/* Logico_4_especializacao: */
+/* diagrama -> comandos -> converter para físico */
+
+CREATE TABLE Hospedes (
+    nome VARCHAR,
+    endereco VARCHAR,
+    ID INTEGER PRIMARY KEY,
+    fk_Quarto_codigo INTEGER,
+    data_entrada DATE
+);
+
+CREATE TABLE Quarto (
+    capacidade INTEGER,
+    andar INTEGER,
+    estilo VARCHAR,
+    codigo INTEGER PRIMARY KEY
+);
+
+CREATE TABLE PF (
+    sexo CHAR,
+    idade INTEGER,
+    cpf VARCHAR,
+    FK_Hospedes_ID INTEGER PRIMARY KEY
+);
+
+CREATE TABLE PJ (
+    cnpj VARCHAR,
+    FK_Hospedes_ID INTEGER PRIMARY KEY
+);
+ 
+ALTER TABLE Hospedes ADD CONSTRAINT FK_Hospedes_2
+    FOREIGN KEY (fk_Quarto_codigo)
+    REFERENCES Quarto (codigo)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE PF ADD CONSTRAINT FK_PF_2
+    FOREIGN KEY (FK_Hospedes_ID)
+    REFERENCES Hospedes (ID)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE PJ ADD CONSTRAINT FK_PJ_2
+    FOREIGN KEY (FK_Hospedes_ID)
+    REFERENCES Hospedes (ID)
+    ON DELETE CASCADE;
