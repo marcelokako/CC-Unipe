@@ -33,8 +33,8 @@ int main()
     for (int i=0; i < t_matriz; i++) {
         printf("|");
         for (int j=0; j < t_matriz; j++) {
-            matriz[i][j] = rand() % 10;
-            printf(" %d |", matriz[i][j] );
+            *((*(matriz + i)) + j) = rand() % 10;
+            printf(" %d |", *((*(matriz + i)) + j));
         }
         printf("\n");
     }
