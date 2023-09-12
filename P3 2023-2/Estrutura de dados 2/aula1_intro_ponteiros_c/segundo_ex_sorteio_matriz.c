@@ -1,4 +1,4 @@
-// exemplo em sala 1 - sorteio
+// exemplo em sala 1 - sorteio - 22/08/23
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,52 +6,57 @@
 
 int main()
 {
-
-    srand(time(0));
+    int i, j = 0;
     int escolha;
     do {
-        printf("Escolha a dificuldade: \n[1]Fácil\n[2]Médio\n[3]Difícil\n");
+        printf("Escolha a dificuldade: \n[1]Facil\n[2]Medio\n[3]Dificil\n");
         scanf("%d", &escolha);
     } while (escolha < 1 && escolha > 3);
 
-    int t_matriz;
+    int tamanho_matriz;
     switch (escolha) {
     case 1:
-        
-        t_matriz = 3;
+
+        tamanho_matriz = 3;
         break;
     case 2:
-        t_matriz = 5;
+        tamanho_matriz = 5;
         break;
     case 3:
-        t_matriz = 10;
+        tamanho_matriz = 10;
         break;
     }
 
-    int matriz[t_matriz][t_matriz];
+    int **matriz = NULL;
 
-    for (int i=0; i < t_matriz; i++) {
+    matriz = (int **)malloc(tamanho_matriz * sizeof(int *));
+    for (i=0; i < tamanho_matriz; i++) {
+        *(matriz + i) = (int *)malloc(tamanho_matriz * sizeof(int));
+    }
+
+
+    for (i=0; i < tamanho_matriz; i++) {
         printf("|");
-        for (int j=0; j < t_matriz; j++) {
+        for (j=0; j < tamanho_matriz; j++) {
             *((*(matriz + i)) + j) = rand() % 10;
-            printf(" %d |", *((*(matriz + i)) + j));
+            printf(" %d |", *( *(matriz + i) + j) );
         }
         printf("\n");
     }
 
     int palpite_linha, palpite_coluna;
 
-    printf("Digite a linha e a coluna que voce acha que será numero sorteado: ");
+    printf("Digite a linha e a coluna que voce acha que sera numero sorteado: ");
     scanf("%d %d", &palpite_linha, &palpite_coluna);
 
     int x, y; // coordenadas do sorteio
-    x = rand() % t_matriz;
-    y = rand() % t_matriz;
+    x = rand() % tamanho_matriz;
+    y = rand() % tamanho_matriz;
 
-    if (x == palpite_linha && y == palpite_coluna){
-        printf("Parabéns, você acertou!!");
+    if (x == palpite_linha && y == palpite_coluna) {
+        printf("Parabens, voce acertou!!");
     } else {
-        printf("Ah não :(, tente novamente\n a posição correta era [%d][%d]", x, y);
+        printf("Ah nao :(, a posicao correta era [%d][%d]", x, y);
     }
 
     return 0;
