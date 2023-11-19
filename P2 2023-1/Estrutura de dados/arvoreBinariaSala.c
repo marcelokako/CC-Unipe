@@ -39,7 +39,7 @@ void exibirPosOrdem(t_arvore arvore){
 	}
 }
 
-t_no * criar() {
+t_no * criar() { // poderia ser t_arvore?
 	t_no * no = (t_no*) malloc(sizeof(t_no));
 	
 	if (no){
@@ -64,7 +64,7 @@ t_no * busca(t_arvore arvore, t_elemento dado){
 	
 	achou = busca(arvore->esquerda, dado);
 	
-	if (achou = NULL){
+	if (achou == NULL){
 		busca(arvore->direita, dado);
 	}
 	
