@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        BufferedImage imagemAntes = pegarImagem("src/imagem.jpg");
         BufferedImage imagem = pegarImagem("src/imagem.jpg");
 
         int altura = imagem.getHeight();
@@ -16,9 +17,39 @@ public class Main {
         System.out.println("Largura: " + largura);
         System.out.println("Quantidade de pixels: " + qtdPixel);
 
-        salvarImagem(imagem, "jpg", "imagem2.jpg");
 
-        exibirImagem("Processamento de imagem", imagem);
+        Color corAzul = new Color(0,0,255);
+        Color corVerde = new Color(0, 255, 0);
+        Color corVermelho = new Color(255,0,0);
+
+        pintaPixelCor(imagem, corAzul,0,0);
+        pintaPixelCor(imagem, corVerde,altura/2,largura/2);
+        pintaPixelCor(imagem, corVermelho,altura-1,largura-1);
+
+        exibeRGBPixel(imagem);
+        exibirImagem("Processamento de imagem", imagemAntes, imagem);
+        salvarImagem(imagem, "jpg", "src/imagem2.jpg");
+    }
+
+    private static void exibeRGBPixel(BufferedImage imagem){
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
+        for (int x = 0; x < altura; x++){
+            for (int y = 0; y < largura; y++){
+                System.out.println("Pixel " + (x+1) + ", " + (y+1) + ": " + convertIntRGB(imagem.getRGB(x,y)));
+            }
+        }
+    }
+    private static String convertIntRGB(int rgb_value){
+        int blue = rgb_value & 0xff;
+        int green = (rgb_value & 0xff00) >> 8;
+        int red = (rgb_value & 0xff0000) >> 16;
+        return "("+red+", "+green+", "+blue+")";
+    }
+
+    private static void pintaPixelCor(BufferedImage imagem, Color cor, int x, int y){
+        imagem.setRGB(x,y, cor.getRGB());
+        return;
     }
 
     private static void exibirImagem(String titulo, BufferedImage... imagens) {
