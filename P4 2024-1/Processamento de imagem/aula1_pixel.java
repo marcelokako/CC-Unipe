@@ -18,29 +18,37 @@ public class Main {
         System.out.println("Quantidade de pixels: " + qtdPixel);
 
 
-        Color corAzul = new Color(0,0,255);
-        Color corVerde = new Color(0, 255, 0);
-        Color corVermelho = new Color(255,0,0);
 
-        pintaPixelCor(imagem, corAzul,0,0);
-        pintaPixelCor(imagem, corVerde,altura/2,largura/2);
-        pintaPixelCor(imagem, corVermelho,altura-1,largura-1);
-
+        pintaPixelCor(imagem, Color.blue,0,0);
+        pintaPixelCor(imagem, Color.green,altura/2,largura/2);
+        pintaPixelCor(imagem, Color.red,altura-1,largura-1);
         exibeRGBPixel(imagem);
+
         exibirImagem("Processamento de imagem", imagemAntes, imagem);
         salvarImagem(imagem, "jpg", "src/imagem2.jpg");
     }
+
 
     private static void exibeRGBPixel(BufferedImage imagem){
         int altura = imagem.getHeight();
         int largura = imagem.getWidth();
         for (int x = 0; x < altura; x++){
             for (int y = 0; y < largura; y++){
-                System.out.println("Pixel " + (x+1) + ", " + (y+1) + ": " + convertIntRGB(imagem.getRGB(x,y)));
+                System.out.println("Pixel [" + (x+1) + ", " + (y+1) + "]: " + convertRGBtoString(imagem.getRGB(x,y)));
             }
         }
     }
-    private static String convertIntRGB(int rgb_value){
+    private static BufferedImage bandaR(BufferedImage imagem){
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
+        for (int x = 0; x < altura; x++){
+            for (int y = 0; y < largura; y++){
+               // Color imagem.getRGB(x,y).getBlue
+            }
+        }
+        return imagem;
+    }
+    private static String convertRGBtoString(int rgb_value){
         int blue = rgb_value & 0xff;
         int green = (rgb_value & 0xff00) >> 8;
         int red = (rgb_value & 0xff0000) >> 16;
