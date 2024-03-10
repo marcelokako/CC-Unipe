@@ -7,8 +7,11 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedImage imagemAntes = pegarImagem("src/imagem.jpg");
-        BufferedImage imagem = pegarImagem("src/imagem.jpg");
+        BufferedImage imagemAntes = pegarImagem("Processamento de imagem\\exemplo.png");
+        BufferedImage imagem = pegarImagem("Processamento de imagem\\exemplo.png");
+        BufferedImage imagem1 = pegarImagem("Processamento de imagem\\exemplo.png");
+        BufferedImage imagem2 = pegarImagem("Processamento de imagem\\exemplo.png");
+        BufferedImage imagem3 = pegarImagem("Processamento de imagem\\exemplo.png");
 
         int altura = imagem.getHeight();
         int largura = imagem.getWidth();
@@ -17,15 +20,17 @@ public class Main {
         System.out.println("Largura: " + largura);
         System.out.println("Quantidade de pixels: " + qtdPixel);
 
-
-
         pintaPixelCor(imagem, Color.blue,0,0);
         pintaPixelCor(imagem, Color.green,altura/2,largura/2);
         pintaPixelCor(imagem, Color.red,altura-1,largura-1);
-        exibeRGBPixel(imagem);
+        //exibeRGBPixel(imagem);
+        
+        BufferedImage bandaRed = bandasRGB(imagem1, true, false, false);
+        BufferedImage bandaGreen = bandasRGB(imagem2, false, true, false);
+        BufferedImage bandaBlue = bandasRGB(imagem3, false, false, true);
 
-        exibirImagem("Processamento de imagem", imagemAntes, imagem);
-        salvarImagem(imagem, "jpg", "src/imagem2.jpg");
+        exibirImagem("Processamento de imagem", imagemAntes, bandaRed, bandaGreen, bandaBlue, imagem);
+        salvarImagem(imagem, "png", "/exemplo_edit.png");
     }
 
 
@@ -38,21 +43,24 @@ public class Main {
             }
         }
     }
-    private static BufferedImage bandaR(BufferedImage imagem){
+    private static BufferedImage bandasRGB(BufferedImage imagem, boolean red, boolean green, boolean blue){
         int altura = imagem.getHeight();
         int largura = imagem.getWidth();
         for (int x = 0; x < altura; x++){
             for (int y = 0; y < largura; y++){
-               // Color imagem.getRGB(x,y).getBlue
+                Color corPixel = new Color(imagem.getRGB(x, y));
+                Color corBanda = new Color(
+                    red ? corPixel.getRed() : 0,
+                    green ? corPixel.getGreen() : 0,
+                    blue ? corPixel.getBlue() : 0);
+                pintaPixelCor(imagem, corBanda, x, y);
             }
         }
         return imagem;
     }
     private static String convertRGBtoString(int rgb_value){
-        int blue = rgb_value & 0xff;
-        int green = (rgb_value & 0xff00) >> 8;
-        int red = (rgb_value & 0xff0000) >> 16;
-        return "("+red+", "+green+", "+blue+")";
+        Color cor = new Color(rgb_value);
+        return "("+cor.getRed()+", "+cor.getGreen()+", "+cor.getBlue()+")";
     }
 
     private static void pintaPixelCor(BufferedImage imagem, Color cor, int x, int y){
@@ -93,5 +101,13 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private static BufferedImage getEstadoImagemAtual(BufferedImage imagem){
+        BufferedImage estado = new BufferedImage(imagem.getWidth(), imagem.getHeight(), imagem.getType());
+        Graphics2D g = estado.createGraphics();
+        g.drawImage(imagem, 0, 0, null);
+        // g.dispose();
+        return estado;
     }
 }
