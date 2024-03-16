@@ -66,4 +66,68 @@ public class OperacoesManuais {
         }
         return imagemSaida;
     }
+
+    public static BufferedImage bandaCinzaR(BufferedImage imagemEntrada){
+        int altura = imagemEntrada.getHeight();
+        int largura = imagemEntrada.getWidth();
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagemEntrada.getRGB(x, y));
+                Color corCinzaRed = new Color(corPixel.getRed(),corPixel.getRed(),corPixel.getRed());
+                pintaPixelCor(imagemSaida, corCinzaRed, x, y);
+            }
+        }
+        return imagemSaida;
+    }
+
+    public static BufferedImage bandaCinzaG(BufferedImage imagemEntrada){
+        int altura = imagemEntrada.getHeight();
+        int largura = imagemEntrada.getWidth();
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagemEntrada.getRGB(x, y));
+                Color corCinzaGreen = new Color(corPixel.getGreen(),corPixel.getGreen(),corPixel.getGreen());
+                pintaPixelCor(imagemSaida, corCinzaGreen, x, y);
+            }
+        }
+        return imagemSaida;
+    }
+
+    public static BufferedImage bandaCinzaB(BufferedImage imagemEntrada){
+        int altura = imagemEntrada.getHeight();
+        int largura = imagemEntrada.getWidth();
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagemEntrada.getRGB(x, y));
+                Color corCinzaBlue = new Color(corPixel.getBlue(),corPixel.getBlue(),corPixel.getBlue());
+                pintaPixelCor(imagemSaida, corCinzaBlue, x, y);
+            }
+        }
+        return imagemSaida;
+    }
+
+    public static BufferedImage MostraDiferenca(BufferedImage imagem1, BufferedImage imagem2){
+        int altura = imagem1.getHeight();
+        int largura = imagem1.getWidth();
+        if(altura != imagem2.getHeight() || largura != imagem2.getWidth()){
+            return null;
+        }
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem1.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                int corPixelImagem1 = imagem1.getRGB(x, y);
+                int corPixelImagem2 = imagem2.getRGB(x, y);
+                if(corPixelImagem1 != corPixelImagem2){
+                    Color corDiferenca = new Color(corPixelImagem2);
+                    pintaPixelCor(imagemSaida, corDiferenca, x, y);
+                } else {
+                    pintaPixelCor(imagemSaida, new Color(255,255,255), x, y);
+                }
+            }
+        }
+        return imagemSaida;
+    }
 }
