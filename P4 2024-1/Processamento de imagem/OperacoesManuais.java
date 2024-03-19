@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class OperacoesManuais {
     public static void exibeRGBPixel(BufferedImage imagem){
@@ -113,7 +114,7 @@ public class OperacoesManuais {
         int altura = imagem1.getHeight();
         int largura = imagem1.getWidth();
         if(altura != imagem2.getHeight() || largura != imagem2.getWidth()){
-            return null;
+            throw new RuntimeException("Erro: Imagens de tamanhos diferentes");
         }
         BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem1.getType());
         for (int x = 0; x < largura; x++){
@@ -126,6 +127,104 @@ public class OperacoesManuais {
                 } else {
                     pintaPixelCor(imagemSaida, new Color(255,255,255), x, y);
                 }
+            }
+        }
+        return imagemSaida;
+    }
+
+    public static BufferedImage BinarizarImg(BufferedImage imagem, int limiar){
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
+        if(limiar < 0 || limiar > 255){
+            throw new RuntimeException("Erro: Imagens de tamanhos diferentes");
+        }
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagem.getRGB(x, y));
+                int media = (corPixel.getRed() + corPixel.getGreen() + corPixel.getBlue())/3;
+                Color corBinaria = media > limiar
+                    ? new Color(255,255,255)
+                    : new Color(0,0,0);
+                pintaPixelCor(imagemSaida, corBinaria, x, y);
+            }
+        }
+        return imagemSaida;
+    }
+
+    private static int limitaPixel(double pixel){
+        pixel = Math.min(pixel, 255);
+        pixel = Math.max(pixel, 0);
+        return (int)pixel;
+    }
+
+    public static BufferedImage aumentoTonalidade(BufferedImage imagem, String banda, int tom){
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
+        if(!banda.equalsIgnoreCase("red") &&
+            !banda.equalsIgnoreCase("green") &&
+            !banda.equalsIgnoreCase("blue")){
+            throw new RuntimeException("Erro: Banda de cor inválida");
+        }
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagem.getRGB(x, y));
+                Color corTomAdd = null;
+                if (banda.equalsIgnoreCase("red")){
+                    corTomAdd =new Color(
+                            limitaPixel(corPixel.getRed()+tom),
+                            corPixel.getGreen(),
+                            corPixel.getBlue()
+                    );
+                } else if (banda.equalsIgnoreCase("green")){
+                    corTomAdd =new Color(
+                            corPixel.getRed(),
+                            limitaPixel(corPixel.getGreen()+tom),
+                            corPixel.getBlue()
+                    );
+                } else { // case "blue"
+                    corTomAdd = new Color(
+                            corPixel.getRed(),
+                            corPixel.getGreen(),
+                            limitaPixel(corPixel.getBlue() + tom)
+                    );
+                }
+                pintaPixelCor(imagemSaida, corTomAdd, x, y);
+            }
+        }
+        return imagemSaida;
+    }
+    public static BufferedImage aumentoBrilhoAdd(BufferedImage imagem, int aumentoBrilho){
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagem.getRGB(x, y));
+                Color corBrilhoAdd =new Color(
+                        limitaPixel(corPixel.getRed()+aumentoBrilho),
+                        limitaPixel(corPixel.getGreen()+aumentoBrilho),
+                        limitaPixel(corPixel.getBlue()+aumentoBrilho)
+                );
+                pintaPixelCor(imagemSaida, corBrilhoAdd, x, y);
+            }
+        }
+        return imagemSaida;
+    }
+    public static BufferedImage aumentoBrilhoMult(BufferedImage imagem, double aumentoBrilho){
+        int altura = imagem.getHeight();
+        int largura = imagem.getWidth();
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem.getType());
+        for (int x = 0; x < largura; x++){
+            for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagem.getRGB(x, y));
+                Color corBrilhoMult =new Color(
+                        limitaPixel(corPixel.getRed() * aumentoBrilho),
+                        limitaPixel(corPixel.getGreen() * aumentoBrilho),
+                        limitaPixel(corPixel.getBlue() * aumentoBrilho)
+                );
+                pintaPixelCor(imagemSaida, corBrilhoMult, x, y);
             }
         }
         return imagemSaida;
