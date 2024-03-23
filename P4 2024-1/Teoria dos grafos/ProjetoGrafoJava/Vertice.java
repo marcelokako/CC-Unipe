@@ -2,6 +2,7 @@ public class Vertice {
     String nome;
     int grauIn = 0;
     int grauOut = 0;
+    
     public Vertice(String nome) {
         this.nome = nome;
     }
