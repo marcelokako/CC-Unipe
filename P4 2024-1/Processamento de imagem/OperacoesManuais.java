@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OperacoesManuais {
     public static void exibeRGBPixel(BufferedImage imagem){
@@ -144,8 +145,8 @@ public class OperacoesManuais {
                 Color corPixel = new Color(imagem.getRGB(x, y));
                 int media = (corPixel.getRed() + corPixel.getGreen() + corPixel.getBlue())/3;
                 Color corBinaria = media > limiar
-                    ? new Color(255,255,255)
-                    : new Color(0,0,0);
+                        ? new Color(255,255,255)
+                        : new Color(0,0,0);
                 pintaPixelCor(imagemSaida, corBinaria, x, y);
             }
         }
@@ -159,37 +160,29 @@ public class OperacoesManuais {
     }
 
     public static BufferedImage aumentoTonalidade(BufferedImage imagem, String banda, int tom){
+
+        if(!banda.equalsIgnoreCase("red") &&
+                !banda.equalsIgnoreCase("green") &&
+                !banda.equalsIgnoreCase("blue")){
+            throw new IllegalArgumentException("Erro: Banda de cor inválida");
+        }
         int altura = imagem.getHeight();
         int largura = imagem.getWidth();
-        if(!banda.equalsIgnoreCase("red") &&
-            !banda.equalsIgnoreCase("green") &&
-            !banda.equalsIgnoreCase("blue")){
-            throw new RuntimeException("Erro: Banda de cor inválida");
-        }
         BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem.getType());
         for (int x = 0; x < largura; x++){
             for (int y = 0; y < altura; y++){
                 Color corPixel = new Color(imagem.getRGB(x, y));
-                Color corTomAdd = null;
+                int red = corPixel.getRed();
+                int green = corPixel.getGreen();
+                int blue = corPixel.getBlue();
                 if (banda.equalsIgnoreCase("red")){
-                    corTomAdd =new Color(
-                            limitaPixel(corPixel.getRed()+tom),
-                            corPixel.getGreen(),
-                            corPixel.getBlue()
-                    );
+                    red = limitaPixel(red + tom);
                 } else if (banda.equalsIgnoreCase("green")){
-                    corTomAdd =new Color(
-                            corPixel.getRed(),
-                            limitaPixel(corPixel.getGreen()+tom),
-                            corPixel.getBlue()
-                    );
+                    green = limitaPixel(green + tom);
                 } else { // case "blue"
-                    corTomAdd = new Color(
-                            corPixel.getRed(),
-                            corPixel.getGreen(),
-                            limitaPixel(corPixel.getBlue() + tom)
-                    );
+                    blue = limitaPixel(blue + tom);
                 }
+                Color corTomAdd = new Color(red, green, blue);
                 pintaPixelCor(imagemSaida, corTomAdd, x, y);
             }
         }
@@ -203,9 +196,9 @@ public class OperacoesManuais {
             for (int y = 0; y < altura; y++){
                 Color corPixel = new Color(imagem.getRGB(x, y));
                 Color corBrilhoAdd =new Color(
-                        limitaPixel(corPixel.getRed()+aumentoBrilho),
-                        limitaPixel(corPixel.getGreen()+aumentoBrilho),
-                        limitaPixel(corPixel.getBlue()+aumentoBrilho)
+                        limitaPixel(corPixel.getRed() + aumentoBrilho),
+                        limitaPixel(corPixel.getGreen() + aumentoBrilho),
+                        limitaPixel(corPixel.getBlue() + aumentoBrilho)
                 );
                 pintaPixelCor(imagemSaida, corBrilhoAdd, x, y);
             }
@@ -229,4 +222,16 @@ public class OperacoesManuais {
         }
         return imagemSaida;
     }
+
+//    public static List<Integer> rgb2yiq(BufferedImage imagem){
+//        int altura = imagem.getHeight();
+//        int largura = imagem.getWidth();
+//        List<int[]> arrayYIQ = new ArrayList<int[]>();
+//        for (int x = 0; x < largura; x++){
+//            for (int y = 0; y < altura; y++){
+//                arrayYIQ[x][y] = 1;
+//            }
+//        }
+//        return imagemSaida;
+//    }
 }
