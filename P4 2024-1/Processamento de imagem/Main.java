@@ -25,7 +25,7 @@ public class Main {
 //        BufferedImage bandaGreen = OperacoesManuais.bandasRGB(imagem, false, true, false);
 //        BufferedImage bandaBlue = OperacoesManuais.bandasRGB(imagem, false, false, true);
 
-        // BufferedImage negativo = OperacoesManuais.negativo(imagem);
+        BufferedImage negativo = OperacoesManuais.negativo(imagem);
 //        BufferedImage bandaCinza = OperacoesManuais.bandaCinza(imagem);
 //        BufferedImage bandaCinzaR = OperacoesManuais.bandaCinzaR(imagem);
 //        BufferedImage bandaCinzaG = OperacoesManuais.bandaCinzaG(imagem);
@@ -38,27 +38,32 @@ public class Main {
         // BufferedImage imagemTomBlue = OperacoesManuais.aumentoTonalidade(imagem, "Blue", 150);
         // BufferedImage imagemBrilhoAdd = OperacoesManuais.aumentoBrilhoAdd(imagem, -200);
         // BufferedImage imagemBrilhoMult = OperacoesManuais.aumentoBrilhoMult(imagem, 10);
-
         BufferedImage teste_conversao = OperacoesManuais.yiq2rgb(OperacoesManuais.rgb2yiq(imagem));
+        BufferedImage yiqBrilhoAdd = OperacoesManuais.aumentoBrilhoAdd(OperacoesManuais.rgb2yiq(imagem), 100);
+        BufferedImage yiqBrilhoMult = OperacoesManuais.aumentoBrilhoMult(OperacoesManuais.rgb2yiq(imagem), 2);
+        BufferedImage yiqNegativo = OperacoesManuais.negativo(OperacoesManuais.rgb2yiq(imagem));
 
         ManipulaImg.exibirImagem(
                 "Processamento de imagem",
                imagemAntes
-                // bandaRed,
-                // bandaGreen,
-                // bandaBlue,
-//                bandaCinzaR,
-//                bandaCinzaG,
-//                bandaCinzaB,
-                // negativo,
-                // bandaCinza
-                // imagemBinarizada,
-                // imagemTomRed,
-                // imagemTomGreen,
-                // imagemTomBlue,
-                // imagemBrilhoAdd,
-                // imagemBrilhoMult
+                // ,bandaRed
+                // ,bandaGreen
+                // ,bandaBlue
+                // ,bandaCinzaR
+                // ,bandaCinzaG
+                // ,bandaCinzaB
+                // ,negativo
+                // ,bandaCinza
+                // ,imagemBinarizada
+                // ,imagemTomRed
+                // ,imagemTomGreen
+                // ,imagemTomBlue
+                // ,imagemBrilhoAdd
+                // ,imagemBrilhoMult
                 ,teste_conversao
+                ,yiqBrilhoAdd
+                ,yiqBrilhoMult
+                ,yiqNegativo
                 );
 
         //ManipulaImg.salvarImagem(imagem, "png", "/exemplo_edit.png");
