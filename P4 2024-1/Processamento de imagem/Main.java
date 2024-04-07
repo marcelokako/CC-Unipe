@@ -4,9 +4,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        //String url_imagem = "exemplo.png";
+        String url_imagem = "exemplo.png";
         //String url_imagem2= "exemplo2_VAR.png";
-        String url_imagem = "src/exemplo.png";
+        // String url_imagem = "src/exemplo.png";
 
         BufferedImage imagemAntes = ManipulaImg.pegarImagem(url_imagem);
         BufferedImage imagem = ManipulaImg.pegarImagem(url_imagem);
@@ -32,16 +32,18 @@ public class Main {
 //        BufferedImage bandaCinzaB = OperacoesManuais.bandaCinzaB(imagem);
 
         // BufferedImage diferenca = OperacoesManuais.MostraDiferenca(imagem, imagem2);
-        BufferedImage imagemBinarizada = OperacoesManuais.BinarizarImg(imagem, 100);
-        BufferedImage imagemTomRed = OperacoesManuais.aumentoTonalidade(imagem, "red", 150);
-        BufferedImage imagemTomGreen = OperacoesManuais.aumentoTonalidade(imagem, "Green", 150);
-        BufferedImage imagemTomBlue = OperacoesManuais.aumentoTonalidade(imagem, "Blue", 150);
-        BufferedImage imagemBrilhoAdd = OperacoesManuais.aumentoBrilhoAdd(imagem, -200);
-        BufferedImage imagemBrilhoMult = OperacoesManuais.aumentoBrilhoMult(imagem, 10);
+        // BufferedImage imagemBinarizada = OperacoesManuais.BinarizarImg(imagem, 100);
+        // BufferedImage imagemTomRed = OperacoesManuais.aumentoTonalidade(imagem, "red", 150);
+        // BufferedImage imagemTomGreen = OperacoesManuais.aumentoTonalidade(imagem, "Green", 150);
+        // BufferedImage imagemTomBlue = OperacoesManuais.aumentoTonalidade(imagem, "Blue", 150);
+        // BufferedImage imagemBrilhoAdd = OperacoesManuais.aumentoBrilhoAdd(imagem, -200);
+        // BufferedImage imagemBrilhoMult = OperacoesManuais.aumentoBrilhoMult(imagem, 10);
+
+        BufferedImage teste_conversao = OperacoesManuais.yiq2rgb(OperacoesManuais.rgb2yiq(imagem));
 
         ManipulaImg.exibirImagem(
                 "Processamento de imagem",
-//                imagemAntes,
+               imagemAntes
                 // bandaRed,
                 // bandaGreen,
                 // bandaBlue,
@@ -49,14 +51,16 @@ public class Main {
 //                bandaCinzaG,
 //                bandaCinzaB,
                 // negativo,
-                //bandaCinza
-                imagemBinarizada,
-                imagemTomRed,
-                imagemTomGreen,
-                imagemTomBlue,
-                imagemBrilhoAdd,
-                imagemBrilhoMult
+                // bandaCinza
+                // imagemBinarizada,
+                // imagemTomRed,
+                // imagemTomGreen,
+                // imagemTomBlue,
+                // imagemBrilhoAdd,
+                // imagemBrilhoMult
+                ,teste_conversao
                 );
+
         //ManipulaImg.salvarImagem(imagem, "png", "/exemplo_edit.png");
     }
 

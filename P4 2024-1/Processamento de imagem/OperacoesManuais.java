@@ -137,7 +137,7 @@ public class OperacoesManuais {
         int altura = imagem.getHeight();
         int largura = imagem.getWidth();
         if(limiar < 0 || limiar > 255){
-            throw new RuntimeException("Erro: Imagens de tamanhos diferentes");
+            throw new RuntimeException("Erro: valor de limiar inválido");
         }
         BufferedImage imagemSaida = new BufferedImage(largura, altura, imagem.getType());
         for (int x = 0; x < largura; x++){
@@ -154,9 +154,9 @@ public class OperacoesManuais {
     }
 
     private static int limitaPixel(double pixel){
-        pixel = Math.min(pixel, 255);
-        pixel = Math.max(pixel, 0);
-        return (int)pixel;
+        if(pixel > 255) return 255;
+        if(pixel < 0) return 0;
+        return (int) pixel;
     }
 
     public static BufferedImage aumentoTonalidade(BufferedImage imagem, String banda, int tom){
@@ -223,15 +223,48 @@ public class OperacoesManuais {
         return imagemSaida;
     }
 
-//    public static List<Integer> rgb2yiq(BufferedImage imagem){
-//        int altura = imagem.getHeight();
-//        int largura = imagem.getWidth();
-//        List<int[]> arrayYIQ = new ArrayList<int[]>();
-//        for (int x = 0; x < largura; x++){
-//            for (int y = 0; y < altura; y++){
-//                arrayYIQ[x][y] = 1;
-//            }
-//        }
-//        return imagemSaida;
-//    }
+   public static int[][][] rgb2yiq(BufferedImage imagem){
+       int altura = imagem.getHeight();
+       int largura = imagem.getWidth();
+       int[][][] arrayYIQ = new int[largura][altura][3];
+
+       for (int x = 0; x < largura; x++){
+           for (int y = 0; y < altura; y++){
+                Color corPixel = new Color(imagem.getRGB(x, y));
+                int red = corPixel.getRed(); 
+                int green = corPixel.getGreen(); 
+                int blue = corPixel.getBlue(); 
+                arrayYIQ[x][y][0] = (int) ((0.299 * red) + (0.587 * green) + (0.114 * blue)); // Y
+                arrayYIQ[x][y][1] = (int) ((0.596 * red) - (0.274 * green) - (0.322 * blue)); // I
+                arrayYIQ[x][y][2] = (int) ((0.211 * red) - (0.523 * green) + (0.312 * blue)); // Q
+                // System.out.print("(" + arrayYIQ[x][y][0] + ", " + arrayYIQ[x][y][1] + ", " + arrayYIQ[x][y][2] + ")");
+
+           }
+       }
+
+       return arrayYIQ;
+   }
+   public static BufferedImage yiq2rgb(int[][][] arrayYIQ){
+       int largura = arrayYIQ.length;
+       int altura = arrayYIQ[0].length;
+       BufferedImage imagemSaida = new BufferedImage(largura, altura, BufferedImage.TYPE_INT_ARGB);
+
+       for (int x = 0; x < largura; x++){
+           for (int y = 0; y < altura; y++){
+                int Y = arrayYIQ[x][y][0]; 
+                int I = arrayYIQ[x][y][1]; 
+                int Q = arrayYIQ[x][y][2];
+                Color corPixel = new Color(
+                    limitaPixel(Y + 0.956 * I + 0.621 * Q), // red
+                    limitaPixel(Y - 0.272 * I - 0.647 * Q), // green
+                    limitaPixel(Y - 1.106 * I + 1.703 * Q)  // blue
+                );
+
+                pintaPixelCor(imagemSaida, corPixel, x, y);
+
+           }
+       }
+
+       return imagemSaida;
+   }
 }
