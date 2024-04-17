@@ -25,10 +25,12 @@ public class Grafo {
         }
         if(aresta.origem.nome.equals(aresta.destino.nome)){ // Testa se é um loop
             eDirecionado = true;
-        }
-        for (Aresta value : this.arestas) { // Vê se existe uma aresta de sentido contrário
-            if(value.origem.nome.equals(aresta.destino.nome) && value.destino.nome.equals(aresta.origem.nome)){
-                eDirecionado = true;
+        } else {
+            for (Aresta value : this.arestas) { // Vê se existe uma aresta de sentido contrário
+                if(value.origem.nome.equals(aresta.destino.nome) && value.destino.nome.equals(aresta.origem.nome)){
+                    eDirecionado = true;
+                    break;
+                }
             }
         }
         if(!arestas.contains(aresta)){ 
