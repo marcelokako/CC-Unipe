@@ -15,6 +15,7 @@ public class OperacoesLocais {
         for (int l = parteInteira; l < largura - parteInteira; l++) {
             for (int a = parteInteira; a < altura - parteInteira; a++) {
 
+                //List<List<Integer>> listaRGB = getListasRGB (imagemEntrada, l, a, dimensao);
                 List<Integer> listaR = new ArrayList<>();
                 List<Integer> listaG = new ArrayList<>();
                 List<Integer> listaB = new ArrayList<>();
@@ -69,5 +70,26 @@ public class OperacoesLocais {
             }
         }
         return imagemSaida;
+    }
+
+    private static List<List<Integer>> getListasRGB (BufferedImage imagem, int l, int a, int dimensao){
+        List<Integer> listaR = new ArrayList<>();
+        List<Integer> listaG = new ArrayList<>();
+        List<Integer> listaB = new ArrayList<>();
+        List<List<Integer>> listaTotal = new ArrayList<>();
+        int parteInteira = dimensao / 2;
+
+        for (int i = 0; i < dimensao; i++) {
+            for (int j = 0; j < dimensao; j++) {
+                Color corPixel = new Color(imagem.getRGB(l-parteInteira+j, a-parteInteira+i));
+                listaR.add(corPixel.getRed());
+                listaG.add(corPixel.getGreen());
+                listaB.add(corPixel.getBlue());
+            }
+        }  
+        listaTotal.add(listaR);
+        listaTotal.add(listaG);
+        listaTotal.add(listaB);
+        return listaTotal;
     }
 }
