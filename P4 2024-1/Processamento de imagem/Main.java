@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String url_imagem = "menino.png";
+        String url_imagem = "lena.png";
         //String url_imagem2= "exemplo2_VAR.png";
         // String url_imagem = "src/exemplo.png";
 
@@ -14,12 +14,14 @@ public class Main {
 
         BufferedImage suavizaMediana = OperacoesLocais.SuavizaImgMediana(imagem, 3);
         BufferedImage suavizaMedia = OperacoesLocais.SuavizaImgMedia(imagem, 5);
+        BufferedImage gauss = OperacoesLocais.SuavizaGaussiano3x3(imagem);
 
         ManipulaImg.exibirImagem(
                 "Processamento de imagem",
                imagemAntes
-                ,suavizaMediana
-                ,suavizaMedia
+                // ,suavizaMediana
+                // ,suavizaMedia
+                ,gauss
                 );
 
         //ManipulaImg.salvarImagem(imagem, "png", "/exemplo_edit.png");

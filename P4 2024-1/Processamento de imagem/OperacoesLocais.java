@@ -71,6 +71,40 @@ public class OperacoesLocais {
         }
         return imagemSaida;
     }
+    
+    public static BufferedImage SuavizaGaussiano3x3(BufferedImage imagemEntrada) {
+        int altura = imagemEntrada.getHeight();
+        int largura = imagemEntrada.getWidth();
+        
+        BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
+
+        double[][] filtroGaussiano = {{1.0/16, 2.0/16, 1.0/16},
+                                      {2.0/16, 4.0/16, 2.0/16},
+                                      {1.0/16, 2.0/16, 1.0/16}};
+        for (int l = 1; l < largura - 1; l++) {
+            for (int a = 1; a < altura - 1; a++) {
+
+                double somaR = 0;
+                double somaG = 0;
+                double somaB = 0;
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        Color corPixel = new Color(imagemEntrada.getRGB(l-1+j, a-1+i));
+
+                        somaR += corPixel.getRed() * filtroGaussiano[i][j];
+                        somaG += corPixel.getGreen() * filtroGaussiano[i][j];
+                        somaB += corPixel.getBlue() * filtroGaussiano[i][j];
+                    }
+                }          
+                int corMediaR = OperacoesManuais.limitaPixel(somaR);
+                int corMediaG = OperacoesManuais.limitaPixel(somaG);
+                int corMediaB = OperacoesManuais.limitaPixel(somaB);
+                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMediaR,corMediaG,corMediaB), l, a);   
+
+            }
+        }
+        return imagemSaida;
+    }
 
     private static List<List<Integer>> getListasRGB (BufferedImage imagem, int l, int a, int dimensao){
         List<Integer> listaR = new ArrayList<>();

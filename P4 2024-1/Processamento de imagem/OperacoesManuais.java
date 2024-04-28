@@ -158,7 +158,7 @@ public class OperacoesManuais {
         return imagemSaida;
     }
 
-    private static int limitaPixel(double pixel) {
+    public static int limitaPixel(double pixel) {
         if (pixel > 255)
             return 255;
         if (pixel < 0)
