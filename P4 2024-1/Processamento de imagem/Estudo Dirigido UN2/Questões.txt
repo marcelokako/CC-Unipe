@@ -1,0 +1,5 @@
+Utilize um filtro (de todos que já criamos desde o começo da disciplina) na imagem mamográfica de modo que seja possível enxergar melhor os detalhes contidos na região central da mama. Explique por que você escolheu este filtro.
+Aplique o filtro de binarização (limiarização) na imagem da ressonância craniana, testando diferentes valores para o limiar. Comente sobre os resultados.
+Realce uma das as imagens de exame de urina utilizando algum filtro (teste com todos que já criamos desde o começo da disciplina) e comente sobre os resultados.
+Refaça a questão anterior com a imagem de microbiota e comente os resultados.
+Filtre a imagem ‘teste-restauração’ de modo que consiga destacar apenas a estrela de todo o resto da imagem. Atente para o ruído: você precisará de um pré-processamento com um filtro de suavização para removê-lo. Comente o que foi utilizado.
