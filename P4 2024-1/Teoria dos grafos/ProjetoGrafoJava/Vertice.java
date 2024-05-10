@@ -1,8 +1,20 @@
+import java.util.List;
+
 public class Vertice {
     String nome;
     int grauIn = 0;
     int grauOut = 0;
-    
+    List<Vertice> adjacencias;
+    List<Vertice> adjecentesAMim;
+
+    public List<Vertice> getAdjacencias() {
+        return adjacencias;
+    }
+
+    public List<Vertice> getAdjecentesAMim() {
+        return adjecentesAMim;
+    }
+
     public Vertice(String nome) {
         this.nome = nome;
     }
@@ -15,4 +27,6 @@ public class Vertice {
     public int getGrauOut() {
         return grauOut;
     }
+
+
 }
