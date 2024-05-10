@@ -2,6 +2,7 @@ public class Aresta {
     String nome;
     Vertice origem;
     Vertice destino;
+    int peso;
 
     public Aresta(String nome, Vertice origem, Vertice destino) {
         this.nome = nome;
@@ -12,5 +13,7 @@ public class Aresta {
 
     }
 
-
+    public int getPeso() {
+        return peso;
+    }
 }
