@@ -8,7 +8,7 @@ public class OperacoesLocais {
     public static BufferedImage SuavizaImgMediana(BufferedImage imagemEntrada, int dimensao) {
         int altura = imagemEntrada.getHeight();
         int largura = imagemEntrada.getWidth();
-        
+
         int parteInteira = dimensao / 2;
 
         BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
@@ -26,15 +26,15 @@ public class OperacoesLocais {
                         listaG.add(corPixel.getGreen());
                         listaB.add(corPixel.getBlue());
                     }
-                }          
-                
+                }
+
                 Collections.sort(listaR);
                 int corMedianaR = listaR.get(listaR.size() / 2);
                 Collections.sort(listaG);
                 int corMedianaG = listaG.get(listaG.size() / 2);
                 Collections.sort(listaB);
                 int corMedianaB = listaB.get(listaB.size() / 2);
-                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMedianaR,corMedianaG,corMedianaB), l, a);   
+                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMedianaR,corMedianaG,corMedianaB), l, a);
 
             }
         }
@@ -44,7 +44,7 @@ public class OperacoesLocais {
     public static BufferedImage SuavizaImgMedia(BufferedImage imagemEntrada, int dimensao) {
         int altura = imagemEntrada.getHeight();
         int largura = imagemEntrada.getWidth();
-        
+
         int parteInteira = dimensao / 2;
         BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
         for (int l = parteInteira; l < largura - parteInteira; l++) {
@@ -61,26 +61,26 @@ public class OperacoesLocais {
                         somaG += corPixel.getGreen();
                         somaB += corPixel.getBlue();
                     }
-                }          
+                }
                 int corMediaR = (int) (somaR/(dimensao * dimensao));
                 int corMediaG = (int) (somaG/(dimensao * dimensao));
                 int corMediaB = (int) (somaB/(dimensao * dimensao));
-                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMediaR,corMediaG,corMediaB), l, a);   
+                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMediaR,corMediaG,corMediaB), l, a);
 
             }
         }
         return imagemSaida;
     }
-    
+
     public static BufferedImage SuavizaGaussiano3x3(BufferedImage imagemEntrada) {
         int altura = imagemEntrada.getHeight();
         int largura = imagemEntrada.getWidth();
-        
+
         BufferedImage imagemSaida = new BufferedImage(largura, altura, imagemEntrada.getType());
 
         double[][] filtroGaussiano = {{1.0/16, 2.0/16, 1.0/16},
-                                      {2.0/16, 4.0/16, 2.0/16},
-                                      {1.0/16, 2.0/16, 1.0/16}};
+                {2.0/16, 4.0/16, 2.0/16},
+                {1.0/16, 2.0/16, 1.0/16}};
         for (int l = 1; l < largura - 1; l++) {
             for (int a = 1; a < altura - 1; a++) {
 
@@ -95,11 +95,11 @@ public class OperacoesLocais {
                         somaG += corPixel.getGreen() * filtroGaussiano[i][j];
                         somaB += corPixel.getBlue() * filtroGaussiano[i][j];
                     }
-                }          
+                }
                 int corMediaR = OperacoesManuais.limitaPixel(somaR);
                 int corMediaG = OperacoesManuais.limitaPixel(somaG);
                 int corMediaB = OperacoesManuais.limitaPixel(somaB);
-                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMediaR,corMediaG,corMediaB), l, a);   
+                OperacoesManuais.pintaPixelCor(imagemSaida, new Color(corMediaR,corMediaG,corMediaB), l, a);
 
             }
         }
@@ -120,7 +120,7 @@ public class OperacoesLocais {
                 listaG.add(corPixel.getGreen());
                 listaB.add(corPixel.getBlue());
             }
-        }  
+        }
         listaTotal.add(listaR);
         listaTotal.add(listaG);
         listaTotal.add(listaB);
