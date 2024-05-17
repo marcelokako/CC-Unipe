@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Grafo {
     List <Aresta> arestas = new ArrayList<>();
@@ -119,7 +117,7 @@ public class Grafo {
         return verticesPercorridos;
     }
     
-    public List<Vertice> buscaProfundidade(Vertice verticeAlvo){
+    public List<Vertice> passeioProfundidadeDireita(Vertice verticeAlvo){
         // estou num vertice -> ve se tenho adjacentes a mim, vou nele, repito até que não tenha
         List<Vertice> verticesPercorridos = new ArrayList<>();
         if(this.vertices.isEmpty()){
@@ -162,5 +160,46 @@ public class Grafo {
         }
         System.out.println("Vertice não foi encontrado!");
         return verticesPercorridos;
+        /*
+        - sim
+        - 5,7,6,4,2,3,1
+        - 6
+        -       5
+                /\
+               7  6
+              /   /
+             4   2
+            / \
+           3   1
+
+        -         1
+                 /
+                2
+               / \
+              4   3
+
+        2) BA alcancável de AC
+        BFS: AC,RO,AM,MT,PA,RR,MS,GO,TO,PA,PR,SP,MG,BA** COMPRIMENTO = 14 
+        DFS: AC,RO,MT,MS,PR,SC,RS,SP,RJ,ES,BA** COMPRIMENTO = 11
+        DFS É MAIS EFICIENTE
+        
+        ÁRVORE
+                            AC
+                           /  \
+                         RO    AM
+                        /     /  \
+                       MT    PA   RR
+                     /  | \   | \
+                   MS  GO TO  MA AP
+                / / |   \
+              PR SP MG  BA**
+        */
+    }
+    public boolean buscaLargura(Vertice inicio, Vertice alvo){
+        Queue<Vertice> fila = new LinkedList<>();
+        
+        fila.add(inicio);
+
+        return false;
     }
 }
