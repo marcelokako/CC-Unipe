@@ -2,32 +2,49 @@ public class Main {
     public static void main(String[] args) {
 
         Grafo grafo = new Grafo();
-
-        Vertice a = new Vertice("A");
+        grafo.setDirecionado();
+        // Criando grafo igual ao do slide mas com letras ao inves de numero
+        Vertice a = new Vertice("1");
         grafo.addVertice(a);
-        
-        Vertice b = new Vertice("B");
+        Vertice b = new Vertice("2");
         grafo.addVertice(b);
-        
-        Vertice c = new Vertice("C");
+        Vertice c = new Vertice("3");
         grafo.addVertice(c);
+        Vertice d = new Vertice("4");
+        grafo.addVertice(d);
+        Vertice e = new Vertice("5");
+        grafo.addVertice(e);
+        Vertice f = new Vertice("6");
+        grafo.addVertice(f);
+        Vertice g = new Vertice("7");
+        grafo.addVertice(g);
         
-        Aresta ab = new Aresta("AB", a,b);
-        grafo.addAresta(ab);
+        Aresta a1 = new Aresta("AB", a,b);
+        grafo.addAresta(a1);
         
-        Aresta bc = new Aresta("BC", b,c);
-        grafo.addAresta(bc);
+        Aresta a2 = new Aresta("AE", a,e);
+        grafo.addAresta(a2);
         
-        Aresta ca = new Aresta("CA", c,a);
-        grafo.addAresta(ca);
-        Aresta ac = new Aresta("AC", a,c);
-        grafo.addAresta(ac);
+        Aresta a3 = new Aresta("AC", a,c);
+        grafo.addAresta(a3);
         
-        //Aresta aa = new Aresta("AA", a,a);
-        //grafo.addAresta(aa);
-        // grafo.getVertices();
-        // grafo.getArestas();
-
+        Aresta a4 = new Aresta("BF", b,f);
+        grafo.addAresta(a4);
+        
+        Aresta a5 = new Aresta("BD", b,d);
+        grafo.addAresta(a5);
+        
+        Aresta a6 = new Aresta("ED", e,d);
+        grafo.addAresta(a6);
+        
+        Aresta a7 = new Aresta("CD", c,d);
+        grafo.addAresta(a7);
+        
+        Aresta a8 = new Aresta("CG", c,g);
+        grafo.addAresta(a8);
+           
         grafo.imprimeDadosGrafo();
+        
+        grafo.buscaProfundidade(g);
     }
 }

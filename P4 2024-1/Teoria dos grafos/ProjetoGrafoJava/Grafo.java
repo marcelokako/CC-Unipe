@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Grafo {
     List <Aresta> arestas = new ArrayList<>();
@@ -8,6 +9,10 @@ public class Grafo {
     boolean ePonderado = false;
     int ordem=0;
     int tamanho=0;
+
+    public void setDirecionado(){
+        this.eDirecionado = true;
+    }
 
     public int getOrdem() {
         return ordem;
@@ -67,7 +72,12 @@ public class Grafo {
             stringGrau = flagDirecionado
                     ? ("grauIn: " + value.getGrauIn() + " | grauOut: " + value.getGrauOut())
                     : ("grau: " + value.getGrau()) ;
-            System.out.println(value.nome + ": " + stringGrau);
+            System.out.println("\n" + value.nome + ": " + stringGrau);
+
+            System.out.println("\nAdjacentes a mim");
+            for (Vertice adj : value.adjecentesAMim) {
+                System.out.println(adj.nome + " , ");
+            }
         }
     }
     public void imprimeDadosGrafo() {
@@ -78,7 +88,7 @@ public class Grafo {
 
         this.getVertices();
         this.getArestas();
-
+        System.out.println("--------------------------------------------");
     }
     public void addAdjacencias(Vertice vertice, Vertice verticeAdj) {
         if(!vertice.adjacencias.contains(verticeAdj)){
@@ -90,7 +100,7 @@ public class Grafo {
             vertice.adjecentesAMim.add(verticeAdjAMim);
         }
     }
-    public int comprimentoCaminho(List<Aresta> arestasPercorridos){
+    public int comprimentoCaminhoArestas(List<Aresta> arestasPercorridos){
         if(!ePonderado) return  arestasPercorridos.size();
         int comprimento = 0;
         for (Aresta aresta : arestasPercorridos){
@@ -99,7 +109,7 @@ public class Grafo {
 
         return comprimento;
     }
-    public int comprimentoCaminho(List<Vertice> verticesPercorridos){
+    public int comprimentoCaminhoVertices(List<Vertice> verticesPercorridos){
         return verticesPercorridos.size() - 1;
     }
     
@@ -109,5 +119,48 @@ public class Grafo {
         return verticesPercorridos;
     }
     
-    
+    public List<Vertice> buscaProfundidade(Vertice verticeAlvo){
+        // estou num vertice -> ve se tenho adjacentes a mim, vou nele, repito até que não tenha
+        List<Vertice> verticesPercorridos = new ArrayList<>();
+        if(this.vertices.isEmpty()){
+            return verticesPercorridos;
+        }
+        Stack<Vertice> pilha = new Stack<>();
+        for (Vertice verticeInicio : vertices) {
+            if(verticesPercorridos.contains(verticeInicio)){
+                continue;
+            }
+
+            pilha.push(verticeInicio);
+            System.out.println("\nVertice ADD: " + verticeInicio.nome);
+
+            while (!pilha.isEmpty()) { 
+
+                Vertice proximoVertice = pilha.peek();
+                if (proximoVertice == verticeAlvo) {
+                    System.out.println("Vertice encontrado!");
+                    return verticesPercorridos;
+                }
+                boolean adjPercorridos = true;
+                for (Vertice adj : proximoVertice.adjecentesAMim) {
+                    if(!verticesPercorridos.contains(adj)){
+                        adjPercorridos = false;
+                        pilha.push(adj);
+                        System.out.println("Vertice ADD: " + adj.nome);
+                        break;
+                    }
+                }
+
+                if(adjPercorridos){
+                    Vertice verticeVisto = pilha.pop();
+                    if(!verticesPercorridos.contains(verticeVisto)){
+                        System.out.println("Vertice Visto: " + verticeVisto.nome);
+                        verticesPercorridos.add(verticeVisto);
+                    }
+                }
+            }
+        }
+        System.out.println("Vertice não foi encontrado!");
+        return verticesPercorridos;
+    }
 }
