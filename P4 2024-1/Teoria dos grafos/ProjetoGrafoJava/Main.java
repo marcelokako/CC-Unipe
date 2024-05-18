@@ -45,6 +45,7 @@ public class Main {
            
         grafo.imprimeDadosGrafo();
         
-        grafo.passeioProfundidadeDireita(g);
+        // grafo.passeioProfundidadeDireita(g);
+        grafo.buscaLargura(a, g);
     }
 }

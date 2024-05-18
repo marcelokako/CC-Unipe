@@ -135,7 +135,7 @@ public class Grafo {
             while (!pilha.isEmpty()) { 
 
                 Vertice proximoVertice = pilha.peek();
-                if (proximoVertice == verticeAlvo) {
+                if (proximoVertice.nome.equals(verticeAlvo.nome)) {
                     System.out.println("Vertice encontrado!");
                     return verticesPercorridos;
                 }
@@ -198,8 +198,28 @@ public class Grafo {
     public boolean buscaLargura(Vertice inicio, Vertice alvo){
         Queue<Vertice> fila = new LinkedList<>();
         
+        List<Vertice> verticesPercorridos = new ArrayList<>();
         fila.add(inicio);
+        System.out.println("Vertice ADD: " + inicio.nome);
 
+        while(!fila.isEmpty()){
+            Vertice verticeAtual = fila.poll();
+            System.out.println("Vertice Visto: " + verticeAtual.nome);
+
+            verticesPercorridos.add(verticeAtual);
+            if(verticeAtual.nome.equals(alvo.nome)){
+                System.out.println("Vertice alvo encontrado");
+                return true;
+            }
+            for (Vertice adj : verticeAtual.adjecentesAMim) {
+                if (!verticesPercorridos.contains(adj) && !fila.contains(adj)) {
+                    fila.add(adj);
+                    System.out.println("Vertice ADD: " + adj.nome);
+                }
+            }
+
+        }
+        System.out.println("Vertice alvo não encontrado");
         return false;
     }
 }
