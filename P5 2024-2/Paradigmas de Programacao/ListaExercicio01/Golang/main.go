@@ -90,4 +90,21 @@ func main() {
 	escola2.listaProfessores()
 
 	professor2.listaEscolas()
+
+	fmt.Println("-------------------------------- QUESTÃO 8 --------------------------------")
+
+	empresa := &Empresa{nome: "Empresa 1"}
+	funcionario1 := &Funcionario{
+		nome:    "Carlos",
+		cargo:   "Diretor",
+		salario: 5000,
+	}
+	funcionario2 := &Funcionario{
+		nome:    "Gilberto",
+		cargo:   "Assistente",
+		salario: 1000,
+	}
+	empresa.contrataFuncionario(funcionario1)
+	empresa.contrataFuncionario(funcionario2)
+	empresa.listaFuncionarios()
 }
