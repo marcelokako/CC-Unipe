@@ -71,4 +71,23 @@ func main() {
 		fmt.Println("Erro ao sacar:", err)
 	}
 
+	fmt.Println("-------------------------------- QUESTÃO 7 --------------------------------")
+
+	escola1 := &Escola{nome: "Escola 1"}
+	escola2 := &Escola{nome: "Escola 2"}
+
+	professor1 := &Professor{nome: "Carlos"}
+	professor2 := &Professor{nome: "Gilberto"}
+	professor3 := &Professor{nome: "Maria"}
+
+	escola1.contrataProfessor(professor1)
+	escola1.contrataProfessor(professor2)
+
+	escola2.contrataProfessor(professor3)
+	escola2.contrataProfessor(professor2)
+
+	escola1.listaProfessores()
+	escola2.listaProfessores()
+
+	professor2.listaEscolas()
 }
