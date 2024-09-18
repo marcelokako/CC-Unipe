@@ -51,4 +51,24 @@ func main() {
 	zoologico.adicionarAnimal(gato)
 	zoologico.sonsAnimais()
 
+	fmt.Println("------------------------------ QUESTÃO 3 e 15 ------------------------------")
+	conta := ContaBancaria{
+		titular: "Marcelo",
+		saldo:   1500,
+	}
+
+	conta.ObterSaldo()
+
+	conta.Depositar(500.0)
+
+	err := conta.Sacar(300.0)
+	if err != nil {
+		fmt.Println("Erro ao sacar:", err)
+	}
+
+	err = conta.Sacar(2000.0)
+	if err != nil {
+		fmt.Println("Erro ao sacar:", err)
+	}
+
 }
