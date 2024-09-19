@@ -107,4 +107,11 @@ func main() {
 	empresa.contrataFuncionario(funcionario1)
 	empresa.contrataFuncionario(funcionario2)
 	empresa.listaFuncionarios()
+
+	fmt.Println("-------------------------------- QUESTÃO 9 --------------------------------")
+	relatorio := &Relatorio{corpo: "Este é o corpo de um Relatorio"}
+	contrato := &Contrato{corpo: "Este é o corpo de um Contrato", contratante: "Marcelo"}
+
+	relatorio.imprimir()
+	contrato.imprimir()
 }
