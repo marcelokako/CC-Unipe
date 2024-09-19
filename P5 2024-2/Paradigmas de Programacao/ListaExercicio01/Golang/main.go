@@ -136,4 +136,16 @@ func main() {
 
 	fmt.Println("-------------------------------- QUESTÃO 13 --------------------------------")
 	fatorial(5)
+
+	fmt.Println("-------------------------------- QUESTÃO 14 --------------------------------")
+	config1 := ObterConfiguracao()
+	config2 := ObterConfiguracao()
+
+	fmt.Println("Config1:", config1)
+	fmt.Println("Config2:", config2)
+
+	config1.valor = "Configuração alterada"
+
+	fmt.Println("Valor de Config1:", config1.valor)
+	fmt.Println("Valor de Config2:", config2.valor)
 }

@@ -34,6 +34,6 @@ func fatorial(n int) int {
 	} else {
 		resultado = 0 // erro
 	}
-	fmt.Printf("%d! = %d", n, resultado)
+	fmt.Printf("%d! = %d\n", n, resultado)
 	return resultado
 }
