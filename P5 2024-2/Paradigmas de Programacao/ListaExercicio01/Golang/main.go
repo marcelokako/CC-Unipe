@@ -114,4 +114,26 @@ func main() {
 
 	relatorio.imprimir()
 	contrato.imprimir()
+
+	fmt.Println("-------------------------------- QUESTÃO 10 --------------------------------")
+	somaDois(2, 3)
+	somaTres(2, 3, 5)
+
+	fmt.Println("-------------------------------- QUESTÃO 11 --------------------------------")
+	funcionario1.calcularSalario()
+	funcionarioHorista1 := &FuncionarioHorista{
+		nome:         "Jobson",
+		cargo:        "Secretário",
+		precoHora:    30,
+		cargaHoraria: 40,
+	}
+	funcionarioHorista1.calcularSalario()
+
+	fmt.Println("-------------------------------- QUESTÃO 12 --------------------------------")
+	produto1 := Produto{nome: "produto1", valor: 50}
+	produto2 := Produto{nome: "produto2", valor: 150}
+	somaProdutos(&produto1, &produto2)
+
+	fmt.Println("-------------------------------- QUESTÃO 13 --------------------------------")
+	fatorial(5)
 }
