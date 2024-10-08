@@ -8,7 +8,9 @@ func main() {
 
 	fmt.Println("------------------------------ QUESTÃO 1 E 6 ------------------------------")
 	motor := Motor{tipo: "Gasolina", potencia: 150}
+	motor2 := Motor{tipo: "Álcool", potencia: 100}
 	roda := Roda{marca: "Pirelli", tamanho: 100}
+	roda3 := Roda{marca: "Michellin", tamanho: 150}
 	meuCarro := Carro{
 		Motor:  motor,
 		marca:  "Hyundai",
@@ -16,13 +18,36 @@ func main() {
 		ano:    2020,
 		Rodas:  make([]Roda, 4),
 	}
+	meuCarro2 := Carro{
+		Motor:  motor2,
+		marca:  "Fiat",
+		modelo: "Uno",
+		ano:    2018,
+		Rodas:  make([]Roda, 4),
+	}
+	meuCarro3 := Carro{
+		Motor:  motor2,
+		marca:  "Kya",
+		modelo: "Soul",
+		ano:    2018,
+		Rodas:  make([]Roda, 4),
+	}
 	meuCarro.Motor.ligar()
 
 	for i := range meuCarro.Rodas {
 		meuCarro.Rodas[i] = roda
 		meuCarro.Rodas[i].inflar()
+
+		meuCarro2.Rodas[i] = roda
+		meuCarro2.Rodas[i].inflar()
+
+		meuCarro3.Rodas[i] = roda3
+		meuCarro3.Rodas[i].inflar()
 	}
+
 	meuCarro.exibirDetalhes()
+	meuCarro2.exibirDetalhes()
+	meuCarro3.exibirDetalhes()
 
 	meuCarro.ligarCarro()
 
