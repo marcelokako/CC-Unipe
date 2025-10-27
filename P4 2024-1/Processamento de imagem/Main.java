@@ -4,24 +4,21 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String url_imagem = "lena.png";
-        //String url_imagem2= "exemplo2_VAR.png";
-        // String url_imagem = "src/exemplo.png";
+        // String url_imagem = "exe.png";
+        String url_imagem1 = "exemplo.png";
+        String url_imagem2= "exemplo_VAR.png";
 
-        BufferedImage imagemAntes = ManipulaImg.pegarImagem(url_imagem);
-        BufferedImage imagem = ManipulaImg.pegarImagem(url_imagem);
+        BufferedImage imagem1 = ManipulaImg.pegarImagem(url_imagem1);
+        BufferedImage imagem2 = ManipulaImg.pegarImagem(url_imagem2);
         //BufferedImage imagem2 = ManipulaImg.pegarImagem(url_imagem2);
 
-        BufferedImage suavizaMediana = OperacoesLocais.SuavizaImgMediana(imagem, 3);
-        BufferedImage suavizaMedia = OperacoesLocais.SuavizaImgMedia(imagem, 5);
-        BufferedImage gauss = OperacoesLocais.SuavizaGaussiano3x3(imagem);
+        BufferedImage diferencas = OperacoesManuais.MostraDiferenca(imagem1, imagem2);
 
         ManipulaImg.exibirImagem(
                 "Processamento de imagem",
-               imagemAntes
-                // ,suavizaMediana
-                // ,suavizaMedia
-                ,gauss
+               imagem1
+                ,imagem2
+                ,diferencas
                 );
 
         //ManipulaImg.salvarImagem(imagem, "png", "/exemplo_edit.png");
